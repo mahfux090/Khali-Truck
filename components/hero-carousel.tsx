@@ -15,7 +15,7 @@ const slides = [
     secondaryCTA: { text: "Post a Trip", href: "/post-trip", icon: Truck },
     gradient: "from-blue-600/10 via-background to-background",
     backgroundImage:
-      "https://images.squarespace-cdn.com/content/v1/6384b721bfb9485af63846fb/da1a07a4-f9f4-49bc-b372-57dc12098112/dolomites-workshop-trecime-sunset.jpg?format=2500w",
+      "https://i.postimg.cc/QxXJxkvh/home-page.png",
   },
   {
     id: 2,
