@@ -5,11 +5,23 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface PostTripFormProps {
   userId: string
@@ -79,41 +91,64 @@ export default function PostTripForm({ userId }: PostTripFormProps) {
   }
 
   return (
-    <Card>
+    <Card className="border-black/10">
       <CardHeader>
-        <CardTitle>Trip Details</CardTitle>
-        <CardDescription>Fill in the details about your available truck and route</CardDescription>
+        <CardTitle className="text-black">Trip Details</CardTitle>
+        <CardDescription className="text-black/60">
+          Fill in the details about your available truck and route
+        </CardDescription>
       </CardHeader>
+
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* From / To */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="fromLocation">From Location *</Label>
+              <Label htmlFor="fromLocation" className="text-black">
+                From Location *
+              </Label>
               <Input
                 id="fromLocation"
                 placeholder="e.g., Dhaka"
                 required
                 value={formData.fromLocation}
-                onChange={(e) => handleChange("fromLocation", e.target.value)}
+                onChange={(e) =>
+                  handleChange("fromLocation", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="toLocation">To Location *</Label>
+              <Label htmlFor="toLocation" className="text-black">
+                To Location *
+              </Label>
               <Input
                 id="toLocation"
                 placeholder="e.g., Chittagong"
                 required
                 value={formData.toLocation}
-                onChange={(e) => handleChange("toLocation", e.target.value)}
+                onChange={(e) =>
+                  handleChange("toLocation", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
           </div>
 
+          {/* Truck Type */}
           <div className="space-y-2">
-            <Label htmlFor="truckType">Truck Type *</Label>
-            <Select value={formData.truckType} onValueChange={(value) => handleChange("truckType", value)} required>
-              <SelectTrigger id="truckType">
+            <Label htmlFor="truckType" className="text-black">
+              Truck Type *
+            </Label>
+            <Select
+              value={formData.truckType}
+              onValueChange={(value) =>
+                handleChange("truckType", value)
+              }
+              required
+            >
+              <SelectTrigger className="border-black/20 focus:border-black focus:ring-black">
                 <SelectValue placeholder="Select truck type" />
               </SelectTrigger>
               <SelectContent>
@@ -126,9 +161,12 @@ export default function PostTripForm({ userId }: PostTripFormProps) {
             </Select>
           </div>
 
+          {/* Capacity / Price */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="capacityTons">Capacity (Tons) *</Label>
+              <Label htmlFor="capacityTons" className="text-black">
+                Capacity (Tons) *
+              </Label>
               <Input
                 id="capacityTons"
                 type="number"
@@ -137,12 +175,17 @@ export default function PostTripForm({ userId }: PostTripFormProps) {
                 placeholder="e.g., 10"
                 required
                 value={formData.capacityTons}
-                onChange={(e) => handleChange("capacityTons", e.target.value)}
+                onChange={(e) =>
+                  handleChange("capacityTons", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="pricePerTon">Price per Ton (BDT) *</Label>
+              <Label htmlFor="pricePerTon" className="text-black">
+                Price per Ton (BDT) *
+              </Label>
               <Input
                 id="pricePerTon"
                 type="number"
@@ -151,51 +194,82 @@ export default function PostTripForm({ userId }: PostTripFormProps) {
                 placeholder="e.g., 5000"
                 required
                 value={formData.pricePerTon}
-                onChange={(e) => handleChange("pricePerTon", e.target.value)}
+                onChange={(e) =>
+                  handleChange("pricePerTon", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
           </div>
 
+          {/* Date / Phone */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="availableDate">Available Date *</Label>
+              <Label htmlFor="availableDate" className="text-black">
+                Available Date *
+              </Label>
               <Input
                 id="availableDate"
                 type="date"
                 required
                 min={new Date().toISOString().split("T")[0]}
                 value={formData.availableDate}
-                onChange={(e) => handleChange("availableDate", e.target.value)}
+                onChange={(e) =>
+                  handleChange("availableDate", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="contactPhone">Contact Phone *</Label>
+              <Label htmlFor="contactPhone" className="text-black">
+                Contact Phone *
+              </Label>
               <Input
                 id="contactPhone"
                 type="tel"
                 placeholder="e.g., 01712345678"
                 required
                 value={formData.contactPhone}
-                onChange={(e) => handleChange("contactPhone", e.target.value)}
+                onChange={(e) =>
+                  handleChange("contactPhone", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
           </div>
 
+          {/* Description */}
           <div className="space-y-2">
-            <Label htmlFor="description">Additional Details (Optional)</Label>
+            <Label htmlFor="description" className="text-black">
+              Additional Details (Optional)
+            </Label>
             <Textarea
               id="description"
               placeholder="Any additional information about the truck or route..."
               rows={4}
               value={formData.description}
-              onChange={(e) => handleChange("description", e.target.value)}
+              onChange={(e) =>
+                handleChange("description", e.target.value)
+              }
+              className="border-black/20 focus:border-black focus:ring-black"
             />
           </div>
 
-          {error && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>}
+          {/* Error */}
+          {error && (
+            <div className="rounded-md border border-orange-300 bg-orange-50 p-3 text-sm text-orange-700">
+              {error}
+            </div>
+          )}
 
-          <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+          {/* Submit */}
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading}
+            className="w-full bg-black text-white hover:bg-black/90"
+          >
             {isLoading ? "Posting Trip..." : "Post Trip"}
           </Button>
         </form>

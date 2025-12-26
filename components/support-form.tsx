@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -44,9 +43,14 @@ export function SupportForm() {
       if (error) throw error
 
       setSuccess(true)
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" })
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
+      })
 
-      // Reset success message after 5 seconds
       setTimeout(() => setSuccess(false), 5000)
     } catch (error) {
       console.error("Error submitting support ticket:", error)
@@ -59,82 +63,114 @@ export function SupportForm() {
   if (success) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
-        <CheckCircle className="mb-4 h-16 w-16 text-green-500" />
-        <h3 className="mb-2 text-xl font-semibold">Request Submitted!</h3>
-        <p className="text-muted-foreground">Thank you for contacting us. We'll get back to you within 24-48 hours.</p>
+        <CheckCircle className="mb-4 h-16 w-16 text-orange-500" />
+        <h3 className="mb-2 text-xl font-semibold text-black">
+          Request Submitted!
+        </h3>
+        <p className="text-black/60">
+          Thank you for contacting us. We&apos;ll get back to you within
+          24–48 hours.
+        </p>
       </div>
     )
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      {/* Name & Email */}
       <div className="grid gap-4 sm:grid-cols-2">
         <div className="space-y-2">
-          <Label htmlFor="name">
-            Name <span className="text-destructive">*</span>
+          <Label htmlFor="name" className="text-black">
+            Name <span className="text-orange-500">*</span>
           </Label>
           <Input
             id="name"
             required
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, name: e.target.value })
+            }
             placeholder="Your full name"
+            className="border-black/20 focus:border-black focus:ring-black"
           />
         </div>
+
         <div className="space-y-2">
-          <Label htmlFor="email">
-            Email <span className="text-destructive">*</span>
+          <Label htmlFor="email" className="text-black">
+            Email <span className="text-orange-500">*</span>
           </Label>
           <Input
             id="email"
             type="email"
             required
             value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
             placeholder="your@email.com"
+            className="border-black/20 focus:border-black focus:ring-black"
           />
         </div>
       </div>
 
+      {/* Phone */}
       <div className="space-y-2">
-        <Label htmlFor="phone">Phone (Optional)</Label>
+        <Label htmlFor="phone" className="text-black">
+          Phone (Optional)
+        </Label>
         <Input
           id="phone"
           type="tel"
           value={formData.phone}
-          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, phone: e.target.value })
+          }
           placeholder="+880 1XXX-XXXXXX"
+          className="border-black/20 focus:border-black focus:ring-black"
         />
       </div>
 
+      {/* Subject */}
       <div className="space-y-2">
-        <Label htmlFor="subject">
-          Subject <span className="text-destructive">*</span>
+        <Label htmlFor="subject" className="text-black">
+          Subject <span className="text-orange-500">*</span>
         </Label>
         <Input
           id="subject"
           required
           value={formData.subject}
-          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+          onChange={(e) =>
+            setFormData({ ...formData, subject: e.target.value })
+          }
           placeholder="Brief description of your issue"
+          className="border-black/20 focus:border-black focus:ring-black"
         />
       </div>
 
+      {/* Message */}
       <div className="space-y-2">
-        <Label htmlFor="message">
-          Message <span className="text-destructive">*</span>
+        <Label htmlFor="message" className="text-black">
+          Message <span className="text-orange-500">*</span>
         </Label>
         <Textarea
           id="message"
           required
-          value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          placeholder="Please describe your issue or complaint in detail..."
           rows={6}
+          value={formData.message}
+          onChange={(e) =>
+            setFormData({ ...formData, message: e.target.value })
+          }
+          placeholder="Please describe your issue or complaint in detail..."
+          className="border-black/20 focus:border-black focus:ring-black"
         />
       </div>
 
-      <Button type="submit" disabled={loading} className="w-full">
+      {/* Submit */}
+      <Button
+        type="submit"
+        disabled={loading}
+        className="w-full bg-black text-white hover:bg-black/90"
+      >
         {loading ? (
           <>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />

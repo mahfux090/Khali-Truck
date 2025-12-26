@@ -4,11 +4,17 @@ import { StatsDisplay } from "@/components/stats-display"
 export async function StatsSection() {
   const supabase = await createServerClient()
 
-  // Fetch statistics from database
-  const [{ count: totalUsers }, { count: totalTrips }, { count: activeTrips }] = await Promise.all([
+  const [
+    { count: totalUsers },
+    { count: totalTrips },
+    { count: activeTrips },
+  ] = await Promise.all([
     supabase.from("profiles").select("*", { count: "exact", head: true }),
     supabase.from("trips").select("*", { count: "exact", head: true }),
-    supabase.from("trips").select("*", { count: "exact", head: true }).eq("status", "available"),
+    supabase
+      .from("trips")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "available"),
   ])
 
   const stats = [

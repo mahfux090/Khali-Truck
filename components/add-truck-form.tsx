@@ -5,10 +5,22 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClient } from "@/lib/supabase/client"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 interface AddTruckFormProps {
   userId: string
@@ -80,40 +92,64 @@ export default function AddTruckForm({ userId }: AddTruckFormProps) {
   const currentYear = new Date().getFullYear()
 
   return (
-    <Card>
+    <Card className="border-black/10">
       <CardHeader>
-        <CardTitle>Truck Information</CardTitle>
-        <CardDescription>Enter the details of your truck</CardDescription>
+        <CardTitle className="text-black">Truck Information</CardTitle>
+        <CardDescription className="text-black/60">
+          Enter the details of your truck
+        </CardDescription>
       </CardHeader>
+
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Truck Name */}
           <div className="space-y-2">
-            <Label htmlFor="truckName">Truck Name *</Label>
+            <Label htmlFor="truckName" className="text-black">
+              Truck Name *
+            </Label>
             <Input
               id="truckName"
               placeholder="e.g., My Truck 1"
               required
               value={formData.truckName}
               onChange={(e) => handleChange("truckName", e.target.value)}
+              className="border-black/20 focus:border-black focus:ring-black"
             />
           </div>
 
+          {/* Registration + Type */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="registrationNumber">Registration Number *</Label>
+              <Label htmlFor="registrationNumber" className="text-black">
+                Registration Number *
+              </Label>
               <Input
                 id="registrationNumber"
                 placeholder="e.g., DHAKA-GA-11-1234"
                 required
                 value={formData.registrationNumber}
-                onChange={(e) => handleChange("registrationNumber", e.target.value)}
+                onChange={(e) =>
+                  handleChange("registrationNumber", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="truckType">Truck Type *</Label>
-              <Select value={formData.truckType} onValueChange={(value) => handleChange("truckType", value)} required>
-                <SelectTrigger id="truckType">
+              <Label htmlFor="truckType" className="text-black">
+                Truck Type *
+              </Label>
+              <Select
+                value={formData.truckType}
+                onValueChange={(value) =>
+                  handleChange("truckType", value)
+                }
+                required
+              >
+                <SelectTrigger
+                  id="truckType"
+                  className="border-black/20 focus:border-black focus:ring-black"
+                >
                   <SelectValue placeholder="Select type" />
                 </SelectTrigger>
                 <SelectContent>
@@ -127,20 +163,26 @@ export default function AddTruckForm({ userId }: AddTruckFormProps) {
             </div>
           </div>
 
+          {/* Model + Year */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="model">Model *</Label>
+              <Label htmlFor="model" className="text-black">
+                Model *
+              </Label>
               <Input
                 id="model"
                 placeholder="e.g., TATA LPT 1618"
                 required
                 value={formData.model}
                 onChange={(e) => handleChange("model", e.target.value)}
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="manufactureYear">Manufacture Year *</Label>
+              <Label htmlFor="manufactureYear" className="text-black">
+                Manufacture Year *
+              </Label>
               <Input
                 id="manufactureYear"
                 type="number"
@@ -149,13 +191,19 @@ export default function AddTruckForm({ userId }: AddTruckFormProps) {
                 placeholder={currentYear.toString()}
                 required
                 value={formData.manufactureYear}
-                onChange={(e) => handleChange("manufactureYear", e.target.value)}
+                onChange={(e) =>
+                  handleChange("manufactureYear", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
           </div>
 
+          {/* Capacity */}
           <div className="space-y-2">
-            <Label htmlFor="capacityTons">Capacity (Tons) *</Label>
+            <Label htmlFor="capacityTons" className="text-black">
+              Capacity (Tons) *
+            </Label>
             <Input
               id="capacityTons"
               type="number"
@@ -164,37 +212,62 @@ export default function AddTruckForm({ userId }: AddTruckFormProps) {
               placeholder="e.g., 10"
               required
               value={formData.capacityTons}
-              onChange={(e) => handleChange("capacityTons", e.target.value)}
+              onChange={(e) =>
+                handleChange("capacityTons", e.target.value)
+              }
+              className="border-black/20 focus:border-black focus:ring-black"
             />
           </div>
 
+          {/* Insurance + Fitness */}
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <Label htmlFor="insuranceValidUntil">Insurance Valid Until</Label>
+              <Label htmlFor="insuranceValidUntil" className="text-black">
+                Insurance Valid Until
+              </Label>
               <Input
                 id="insuranceValidUntil"
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 value={formData.insuranceValidUntil}
-                onChange={(e) => handleChange("insuranceValidUntil", e.target.value)}
+                onChange={(e) =>
+                  handleChange("insuranceValidUntil", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="fitnessValidUntil">Fitness Valid Until</Label>
+              <Label htmlFor="fitnessValidUntil" className="text-black">
+                Fitness Valid Until
+              </Label>
               <Input
                 id="fitnessValidUntil"
                 type="date"
                 min={new Date().toISOString().split("T")[0]}
                 value={formData.fitnessValidUntil}
-                onChange={(e) => handleChange("fitnessValidUntil", e.target.value)}
+                onChange={(e) =>
+                  handleChange("fitnessValidUntil", e.target.value)
+                }
+                className="border-black/20 focus:border-black focus:ring-black"
               />
             </div>
           </div>
 
-          {error && <div className="rounded-md bg-destructive/10 p-3 text-sm text-destructive">{error}</div>}
+          {/* Error */}
+          {error && (
+            <div className="rounded-md border border-orange-300 bg-orange-50 p-3 text-sm text-orange-700">
+              {error}
+            </div>
+          )}
 
-          <Button type="submit" className="w-full" size="lg" disabled={isLoading}>
+          {/* Submit */}
+          <Button
+            type="submit"
+            size="lg"
+            disabled={isLoading}
+            className="w-full bg-black text-white hover:bg-black/90"
+          >
             {isLoading ? "Adding Truck..." : "Add Truck"}
           </Button>
         </form>

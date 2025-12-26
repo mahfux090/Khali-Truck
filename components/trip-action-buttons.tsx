@@ -20,7 +20,10 @@ interface TripActionButtonsProps {
   status: string
 }
 
-export default function TripActionButtons({ tripId, status }: TripActionButtonsProps) {
+export default function TripActionButtons({
+  tripId,
+  status,
+}: TripActionButtonsProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [showCancelDialog, setShowCancelDialog] = useState(false)
@@ -39,39 +42,58 @@ export default function TripActionButtons({ tripId, status }: TripActionButtonsP
     setShowCancelDialog(false)
   }
 
-  // Only show actions for available or cancelled trips
+  // Do not show actions for booked/completed trips
   if (status === "booked" || status === "completed") {
     return null
   }
 
   return (
     <>
+      {/* Action Buttons */}
       <div className="flex gap-2">
         {status === "available" && (
-          <Button size="sm" variant="outline" onClick={() => setShowCancelDialog(true)} disabled={isLoading}>
+          <Button
+            size="sm"
+            disabled={isLoading}
+            onClick={() => setShowCancelDialog(true)}
+            className="border border-black/20 bg-white text-black hover:bg-orange-50"
+          >
             <XCircle className="mr-1 h-4 w-4" />
             Cancel
           </Button>
         )}
-        <Button size="sm" variant="destructive" onClick={() => setShowDeleteDialog(true)} disabled={isLoading}>
+
+        <Button
+          size="sm"
+          disabled={isLoading}
+          onClick={() => setShowDeleteDialog(true)}
+          className="bg-orange-500 text-white hover:bg-orange-600"
+        >
           <Trash2 className="mr-1 h-4 w-4" />
           Delete
         </Button>
       </div>
 
+      {/* Delete Dialog */}
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent className="border-black/10">
           <AlertDialogHeader>
-            <AlertDialogTitle>Delete Trip?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This will permanently delete this trip posting. This action cannot be undone.
+            <AlertDialogTitle className="text-black">
+              Delete Trip?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-black/60">
+              This will permanently delete this trip posting. This action
+              cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
+
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel className="border border-black/20 text-black hover:bg-black/5">
+              Cancel
+            </AlertDialogCancel>
             <AlertDialogAction
               onClick={handleDelete}
-              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+              className="bg-orange-500 text-white hover:bg-orange-600"
             >
               Delete Trip
             </AlertDialogAction>
@@ -79,17 +101,29 @@ export default function TripActionButtons({ tripId, status }: TripActionButtonsP
         </AlertDialogContent>
       </AlertDialog>
 
+      {/* Cancel Dialog */}
       <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
-        <AlertDialogContent>
+        <AlertDialogContent className="border-black/10">
           <AlertDialogHeader>
-            <AlertDialogTitle>Cancel Trip?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This will mark the trip as cancelled. You can delete it later if needed.
+            <AlertDialogTitle className="text-black">
+              Cancel Trip?
+            </AlertDialogTitle>
+            <AlertDialogDescription className="text-black/60">
+              This will mark the trip as cancelled. You can delete it later
+              if needed.
             </AlertDialogDescription>
           </AlertDialogHeader>
+
           <AlertDialogFooter>
-            <AlertDialogCancel>Go Back</AlertDialogCancel>
-            <AlertDialogAction onClick={handleCancel}>Cancel Trip</AlertDialogAction>
+            <AlertDialogCancel className="border border-black/20 text-black hover:bg-black/5">
+              Go Back
+            </AlertDialogCancel>
+            <AlertDialogAction
+              onClick={handleCancel}
+              className="bg-black text-white hover:bg-black/90"
+            >
+              Cancel Trip
+            </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>

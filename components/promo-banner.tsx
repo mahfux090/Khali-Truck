@@ -4,7 +4,7 @@ import Image from "next/image"
 
 export function PromoBanner() {
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-r from-primary via-primary/90 to-primary/80 px-4 py-24 md:py-32">
+    <section className="relative w-full overflow-hidden bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 px-4 py-24 md:py-32">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -right-20 -top-20 h-96 w-96 rounded-full bg-white/5 blur-3xl"></div>
@@ -34,7 +34,7 @@ export function PromoBanner() {
           <div className="animate-fade-in-up animation-delay-200 flex items-center justify-center">
             <div className="rounded-xl overflow-hidden shadow-2xl border border-white/20">
               <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-12-26%20121435-I7ZX9DTVpodn8t65TNs5C2T6uq2o1E.png"
+                src="https://i.postimg.cc/ZRqLqNbC/square.png"
                 alt="Khali Truck Database Schema - Bookings, Trips, and Trucks information"
                 width={600}
                 height={400}
