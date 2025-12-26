@@ -11,7 +11,7 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Khali Truck - Bangladesh Logistics Platform",
   description: "Connect trucks with cargo across Bangladesh. Find available trucks or post your trip.",
-  generator: "v0.app",
+  generator: "NImbaba",
 }
 
 export default function RootLayout({
