@@ -15,7 +15,7 @@ const slides = [
     secondaryCTA: { text: "Post a Trip", href: "/post-trip", icon: Truck },
     gradient: "from-blue-600/10 via-background to-background",
     backgroundImage:
-      "https://i.postimg.cc/QxXJxkvh/home-page.png",
+      "https://i.postimg.cc/Qt3xhghP/home-page.png",
   },
   {
     id: 2,
