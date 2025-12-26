@@ -2,6 +2,8 @@ import { StatsSection } from "@/components/stats-section"
 import { TestimonialsSection } from "@/components/testimonials-section"
 import { Footer } from "@/components/footer"
 import { HeroCarousel } from "@/components/hero-carousel"
+import { FeaturesBanner } from "@/components/features-banner"
+import { PromoBanner } from "@/components/promo-banner"
 
 export default function HomePage() {
   return (
@@ -10,6 +12,8 @@ export default function HomePage() {
         <HeroCarousel />
 
         <StatsSection />
+
+        <FeaturesBanner />
 
         {/* Features Section */}
         <section className="border-t bg-background px-4 py-16">
@@ -42,6 +46,8 @@ export default function HomePage() {
             </div>
           </div>
         </section>
+
+        <PromoBanner />
 
         <TestimonialsSection />
       </main>

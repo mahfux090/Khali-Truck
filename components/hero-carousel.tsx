@@ -14,6 +14,8 @@ const slides = [
     primaryCTA: { text: "Find Trucks", href: "/find-trucks", icon: Package },
     secondaryCTA: { text: "Post a Trip", href: "/post-trip", icon: Truck },
     gradient: "from-blue-600/10 via-background to-background",
+    backgroundImage:
+      "https://images.squarespace-cdn.com/content/v1/6384b721bfb9485af63846fb/da1a07a4-f9f4-49bc-b372-57dc12098112/dolomites-workshop-trecime-sunset.jpg?format=2500w",
   },
   {
     id: 2,
@@ -23,6 +25,8 @@ const slides = [
     primaryCTA: { text: "Browse Trucks", href: "/find-trucks", icon: Truck },
     secondaryCTA: { text: "Start Earning", href: "/post-trip", icon: Package },
     gradient: "from-orange-600/10 via-background to-background",
+    backgroundImage:
+      "https://images.squarespace-cdn.com/content/v1/6384b721bfb9485af63846fb/da1a07a4-f9f4-49bc-b372-57dc12098112/dolomites-workshop-trecime-sunset.jpg?format=2500w",
   },
 ]
 
@@ -60,7 +64,7 @@ export function HeroCarousel() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted">
+    <section className="relative overflow-hidden">
       <div className="relative h-[500px] md:h-[600px]">
         {slides.map((slide, index) => {
           const PrimaryIcon = slide.primaryCTA.icon
@@ -77,12 +81,19 @@ export function HeroCarousel() {
                     : "translate-x-full opacity-0"
               }`}
             >
-              <div className={`absolute inset-0 bg-gradient-to-b ${slide.gradient}`} />
+              <div
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                style={{
+                  backgroundImage: `url('${slide.backgroundImage}')`,
+                }}
+              />
+              <div className="absolute inset-0 bg-black/40" />
+
               <div className="relative z-10 mx-auto max-w-3xl space-y-6">
-                <h2 className="text-balance text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
+                <h2 className="text-balance text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl drop-shadow-lg">
                   {slide.title}
                 </h2>
-                <p className="text-pretty text-lg text-muted-foreground md:text-xl">{slide.description}</p>
+                <p className="text-pretty text-lg text-white/90 md:text-xl drop-shadow-md">{slide.description}</p>
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col gap-4 pt-4 sm:flex-row sm:justify-center">
@@ -99,7 +110,7 @@ export function HeroCarousel() {
                     <Button
                       size="lg"
                       variant="outline"
-                      className="group w-full gap-2 bg-transparent text-lg transition-all hover:scale-105 hover:shadow-lg sm:w-auto"
+                      className="group w-full gap-2 bg-white/20 text-white border-white/30 text-lg transition-all hover:scale-105 hover:shadow-lg hover:bg-white/30 sm:w-auto"
                     >
                       <SecondaryIcon className="h-5 w-5 transition-transform group-hover:-rotate-12" />
                       {slide.secondaryCTA.text}
